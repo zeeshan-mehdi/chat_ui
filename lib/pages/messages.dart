@@ -19,7 +19,7 @@ class _MessagesPageState extends State<MessagesPage> {
     return Scaffold(
       body: Container(
         color: const Color(0xFFFFFFF),
-        child: ListView(
+        child: Column(
           children:  [
 
             const Padding(
@@ -39,27 +39,53 @@ class _MessagesPageState extends State<MessagesPage> {
             ),
 
 
-            ...chats.map<Widget>((e){
-              return ListTile(
-                leading: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(
-                        'assets/user.png'
-                    )
-                ),
-                title: Text('Sara',style: TextStyle(fontSize: 18,color: Colors.black),),
-                subtitle: Text('Last Message .. ',style: TextStyle(fontSize: 18,color: Color(0xFF7C7C7C),),
-                ),
-                onTap: (){
-
-                },
-                trailing: Padding(
-                  padding: const EdgeInsets.only(right: 18.0),
-                  child: Text('1 hr',style: TextStyle(fontSize: 14,color: Color(0xFF7C7C7C),),
+            Row(
+              children: [
+                GestureDetector(
+                  child: SearchWidgetBorder(
+                      child: TextButton(onPressed: (){
+                      }, child:Text('All')),
+                      margin: 18,
                   ),
+                  onTap: (){
+
+                  },
                 ),
-              );
-            }),
+                TextButton(onPressed: (){}, child:Text('Recent')),
+              ],
+            ),
+
+            Expanded(
+              child: ListView(
+                children: [
+                  ...chats.map<Widget>((e){
+                    return ListTile(
+                      leading: CircleAvatar(
+                          radius: 30,
+                          backgroundImage: AssetImage(
+                              'assets/user.png'
+                          )
+                      ),
+                      title: Text('Sara',style: TextStyle(fontSize: 18,color: Colors.black),),
+                      subtitle: Text('Last Message .. ',style: TextStyle(fontSize: 18,color: Color(0xFF7C7C7C),),
+                      ),
+                      onTap: (){
+
+                      },
+                      trailing: Padding(
+                        padding: const EdgeInsets.only(right: 18.0),
+                        child: Text('1 hr',style: TextStyle(fontSize: 14,color: Color(0xFF7C7C7C),),
+                        ),
+                      ),
+                    );
+                  }),
+                ],
+              ),
+            )
+
+
+
+
 
           ],
         ),
@@ -67,7 +93,8 @@ class _MessagesPageState extends State<MessagesPage> {
 
       bottomNavigationBar:  BottomNavigationBar(items: const [
          BottomNavigationBarItem(
-            icon: Image(image: AssetImage('assets/group.png'),),label: ''),
+            icon: Image(image: AssetImage('assets/group.png'),),label: ''
+         ),
         BottomNavigationBarItem(
             icon: Image(image: AssetImage('assets/coolicon.png'),),label: ''),
         BottomNavigationBarItem(
